@@ -294,18 +294,36 @@ const Comment = ({
   const returnHistoryTime = (time) => {
     let beforeTime = new Date().getTime() - time;
     beforeTime = parseInt(beforeTime / 1000);
-    if (beforeTime / 60 < 1) {
+    if (beforeTime < 60) {
+      // 초
       return '1분 전';
-    } else if (1 <= beforeTime / 60 < 60) {
+    } else if (
+      (1 <= parseInt(beforeTime / 60)) &
+      (parseInt(beforeTime / 60) < 60)
+    ) {
+      // 분
       return `${parseInt(beforeTime / 60)}분 전`;
-    } else if (1 <= beforeTime / 60 / 60 < 24) {
+    } else if (
+      (1 <= parseInt(beforeTime / 60 / 60)) &
+      (parseInt(beforeTime / 60 / 60) < 24)
+    ) {
+      // 시
       return `${parseInt(beforeTime / 60 / 60)}시간 전`;
-    } else if (1 <= beforeTime / 60 / 60 / 24 < 31) {
-      return `${parseInt(beforeTime / 60 / 60)}일 전`;
-    } else if (1 <= beforeTime / 60 / 60 / 24 / 31 < 1) {
-      return `${parseInt(beforeTime / 60 / 60)}달 전`;
-    } else if (1 <= beforeTime / 60 / 60 / 24 / 31 / 12 < 1) {
-      return `${parseInt(beforeTime / 60 / 60)}년 전`;
+    } else if (
+      (1 <= parseInt(beforeTime / 60 / 60 / 24)) &
+      (parseInt(beforeTime / 60 / 60 / 24) < 31)
+    ) {
+      // 일
+      return `${parseInt(beforeTime / 60 / 60 / 24)}일 전`;
+    } else if (
+      (1 <= parseInt(beforeTime / 60 / 60 / 24 / 31)) &
+      (parseInt(beforeTime / 60 / 60 / 24 / 31) < 12)
+    ) {
+      // 월
+      return `${parseInt(beforeTime / 60 / 60 / 24 / 31)}달 전`;
+    } else {
+      // 년
+      return `${parseInt(beforeTime / 60 / 60 / 24 / 31 / 12)}년 전`;
     }
   };
   return (
