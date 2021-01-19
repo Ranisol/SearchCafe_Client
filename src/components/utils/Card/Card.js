@@ -92,7 +92,7 @@ const CardAddress = styled.div`
 `;
 const CardLocationImg = styled.img`
   position: relative;
-  top: ${(props) => (props.inMypage ? '' : '4px')}
+  top: ${(props) => (props.inMypage ? '0px' : '4px')};
   width: 17px;
   height: 17px;
 `;
@@ -154,9 +154,16 @@ const Card = (props) => {
           />
           <CardName>{props.cafeName ? props.cafeName : '제목'}</CardName>
           <CardAddress inMypage={props.inMypage}>
-            <CardLocationImg src={LocationImg}></CardLocationImg>
+            <CardLocationImg
+              src={LocationImg}
+              inMypage={props.inMypage}
+            ></CardLocationImg>
             <CardAddressDetail inMypage={props.inMypage}>
-              {props.cafeAddress ? props.cafeAddress : '등록된 주소가 없습니다'}
+              {!props.cafeAddress
+                ? '등록된 주소가 없습니다'
+                : props.cafeAddress.length <= 30
+                ? props.cafeAddress
+                : props.cafeAddress.slice(0, 30) + '...'}
             </CardAddressDetail>
           </CardAddress>
           <ScopeContain inMypage={props.inMypage}>
