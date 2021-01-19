@@ -15,13 +15,15 @@ const CafeImage = styled.img`
 const NearbyCafeStyle = styled.div`
   margin: 0;
   box-sizing: border-box;
+  border: 1px solid #dfdfdf;
+  /* box-shadow: 0px 0px 5px 0px #afafaf; */
   width: 400px;
   height: auto;
-  margin: 3rem 0 0 5px;
+  margin: 1.5rem 0 0 5px;
   background-color: #fafafa;
   @media (max-width: 1400px) {
     margin: 3rem auto auto auto;
-    width: 93.5%;
+    width: 83%;
     display: flex;
     justify-content: center;
     align-content: center;
@@ -82,7 +84,7 @@ const NearbyCafe = (state) => {
       <ul className="cafe-list">
         <h3 className="cafe-list-title">주변 카페 추천</h3>
         {nearbyCafe.map((cafe, index) => (
-          <div className="cafe-link">
+          <div key={cafe.id} className="cafe-link">
             <LinkContent key={index} to={`/content/${cafe.id}`}>
               <Cover id={cafe.id}></Cover>
               <CafeList className="cafe">

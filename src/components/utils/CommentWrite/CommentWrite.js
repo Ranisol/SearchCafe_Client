@@ -203,7 +203,6 @@ const commentTags = [
   '편안한',
   '작업하기 좋은',
   '대화하기 좋은',
-  '바다가 보이는',
 ];
 
 const CommentWrite = ({

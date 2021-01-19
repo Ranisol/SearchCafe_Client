@@ -45,7 +45,7 @@ const Map = ({ cafeInfo }) => {
       };
       places.keywordSearch(cafeInfo.cafeName, callback);
     }
-  }, cafeInfo);
+  }, [cafeInfo]);
 
   return <div id="staticMap"></div>;
 };

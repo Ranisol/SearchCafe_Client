@@ -3,7 +3,7 @@ import SignIn from '../../Signin/SignIn';
 import SignUp from '../../SignUp/SignUp';
 import likeImg from './like.png';
 import likedImg from './liked.png';
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 import { connect } from 'react-redux';
 import { actionCreators } from '../../../reducer/store';
 import styled from 'styled-components';
@@ -39,17 +39,24 @@ const Like = ({ user, currentCafe, handleUserHeart }) => {
       openSignin();
     }
   };
+  useEffect(() => {
+    console.log(currentCafe);
+    if (!!user?.heart && !!currentCafe) {
+      let userWasLiked = user.heart.filter(
+        (cafeName) => cafeName === currentCafe.cafeName
+      );
+      console.log(userWasLiked);
+      if (userWasLiked.length !== 0) {
+        setLike(likedImg);
+      } else {
+        setLike(likeImg);
+      }
+    }
+  }, [!!user?.heart && !!currentCafe, currentCafe?.cafeName]);
   const [showSignin, setShowSignin] = useState(false);
   const [showSignup, setShowSignup] = useState(false);
   const [isLogin, setIsLogin] = useState(!!user);
-  const [like, setLike] = useState(
-    !currentCafe |
-      !user |
-      !user?.heart |
-      (user?.heart?.indexOf(currentCafe?.cafeName) === -1)
-      ? likeImg
-      : likedImg
-  );
+  const [like, setLike] = useState(likeImg);
   const openSignin = () => {
     setShowSignin(true);
   };

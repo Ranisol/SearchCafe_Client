@@ -21,21 +21,22 @@ const CardStyle = styled.span`
   width: ${(props) => (props.inMypage ? '320px' : '345px')};
   display: inline-block;
   break-inside: avoid-column;
-  box-shadow: 1px 3px 3px rgba(34, 25, 25, 0.4);
+  border: 1.5px solid #dfdfdf;
+  box-shadow: 0px 1px 2px rgba(100, 100, 100, 0.2);
   margin: 13px 10px 10px 10px;
-  padding: 8px;
+  padding: 0px;
   padding-bottom: 10px;
   font-size: 1rem;
-  border-radius: 10px;
-  background-color: ${(props) => (props.inMypage ? '#eaeaea' : '#ffffff')};
+  border-radius: 3px;
+  background-color: ${(props) => (props.inMypage ? '#f3f3f3' : '#ffffff')};
   height: ${(props) =>
-    props.isMain ? '410px' : props.inMypage ? '370px' : 'auto'};
+    props.isMain ? '387px' : props.inMypage ? '370px' : 'auto'};
   transition: opacity 0.4s ease-in-out;
   transition: 0.3s;
   :hover {
-    box-shadow: 5px 8px 8px 5px rgba(34, 25, 25, 0.4);
+    box-shadow: 1px 2px 3px 0.5px rgba(34, 25, 25, 0.4);
     transition: 0.3s;
-    background-color: #b9aea1;
+    background-color: #ffffff;
   }
 
   &.fadeCard-enter {
@@ -63,21 +64,25 @@ const CardStyle = styled.span`
 `;
 
 const CardImg = styled.img`
-  width: ${(props) => (props.inMypage ? '320px' : '345px')};
+  width: ${(props) => (props.inMypage ? '310px' : '335px')};
   max-height: 400px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  position: relative;
+  right: 0.1px;
   height: ${(props) =>
     props.isMain ? '250px' : props.inMypage ? '230px' : 'auto'};
   min-height: 200px;
   object-fit: ${(props) => (props.isMain | props.inMypage ? 'cover' : '')};
-  border-bottom: 1px solid #dfdfdf;
-  padding-bottom: 13px;
-  margin-bottom: 5px;
+  padding-bottom: 5px;
+  margin: 5px 5px 5px 5px;
 `;
 
 const CardName = styled.div`
   font-size: 1.1rem;
   padding-left: 15px;
-  margin: 5px 0;
+  margin: 0 0 5px 0;
 `;
 
 const CardAddress = styled.div`

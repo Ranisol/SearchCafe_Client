@@ -21,7 +21,7 @@ const CafeCardStyle = styled.div`
   height: auto;
   min-height: 300px;
   background-color: #fafafa;
-  border-radius: 30px;
+  border-radius: 10px;
   overflow-x: scroll;
   white-space: nowrap;
 `;

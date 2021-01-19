@@ -82,13 +82,23 @@ const Nav = ({ state, userHandler }) => {
         <div className="login">
           {isLogin ? (
             <span className="mypage-btn">
-              <Link to="/mypage">마이페이지</Link>
-              <LogOut onClick={handleLogOut}>로그아웃</LogOut>
+              <Link className="mypage-btn-a" to="/mypage">
+                마이페이지
+              </Link>
+
+              <LogOut className="mypage-btn-b" onClick={handleLogOut}>
+                로그아웃
+              </LogOut>
             </span>
           ) : (
-            <span className="login-btn" onClick={openSignin}>
-              로그인
-            </span>
+            <>
+              <span className="login-btn" onClick={openSignin}>
+                로그인
+              </span>
+              {/* <div className onClick={openSignin}>
+                게스트 로그인
+              </div> */}
+            </>
           )}
         </div>
       </div>

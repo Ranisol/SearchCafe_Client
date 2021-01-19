@@ -22,13 +22,14 @@ const Detail = styled.div`
   display: grid;
   grid-template-columns: 2fr 8fr 1fr 10fr 0.5fr;
   /* padding: 20px auto auto 20px; */
-  width: 90%;
-  max-width: 1424px;
+  width: 80%;
+  max-width: 1300px;
   min-width: 600px;
-  height: 660px;
+  height: 610px;
   background: #fafafa;
   padding: 20px 20px;
-  box-shadow: 0 0 8px 0 rgba(0, 0, 0, 0.04);
+  /* box-shadow: 0px 0px 5px 0px #afafaf; */
+  border: 1px solid #dfdfdf;
   margin: auto;
   border-radius: 5px;
   @media (max-width: 1400px) {
@@ -50,7 +51,7 @@ const DescribeContainer = styled.div`
   grid-template-rows: auto;
   align-items: center;
 
-  min-width: 400px;
+  min-width: 450px;
 `;
 //////ANCHOR  First
 const Header = styled.header``;
@@ -168,7 +169,7 @@ const TagContainer = styled.div`
 
 const SlideContainer = styled.div`
   display: flex;
-  margin: 4rem 0 0 0;
+  margin: 1.5rem 0 0 0;
   flex-direction: column;
   align-items: center;
   object-fit: scale-down;
@@ -247,18 +248,18 @@ const Divide = styled.div`
 `;
 
 const ContentHeader = (props) => {
-  console.log(props);
+  console.log(props.currentCafe);
   const [nav1, setNav1] = useState(null);
   const [nav2, setNav2] = useState(null);
-  const [slider1, setSlider1] = useState(null);
-  const [slider2, setSlider2] = useState(null);
-  const [cafeImg, setCafeImg] = useState(
-    !props.currentCafe ? [blank] : props.currentCafe.cafeImg
-  );
+  const [mainPhoto, setMainPhoto] = useState(null);
+  const [subPhoto, setSubPhotos] = useState(null);
+  const [cafeImg, setCafeImg] = useState([blank]);
+
   let cafeid = !props.currentCafe ? '' : props.currentCafe.cafeid;
   let cafeTag = !props.currentCafe ? '' : props.currentCafe.cafeTag;
   let cafeName = !props.currentCafe ? '' : props.currentCafe.cafeName;
   let cafeAddress = !props.currentCafe ? '' : props.currentCafe.cafeAddress;
+  let cafeImage = !props.currentCafe ? [blank] : props.currentCafe.cafeImg;
   let addressname = !props.currentCafe ? '' : props.currentCafe.addressname;
   let cafePhoneNumber = !props.currentCafe
     ? ''
@@ -268,9 +269,12 @@ const ContentHeader = (props) => {
   let Americano = !props.currentCafe ? '' : props.currentCafe.Americano;
   let holiday = !props.currentCafe ? '' : props.currentCafe.holiday;
   useEffect(() => {
-    setNav1(slider1);
-    setNav2(slider2);
+    setNav1(mainPhoto);
+    setNav2(subPhoto);
   }, []);
+  useEffect(() => {
+    setCafeImg(cafeImage);
+  }, [cafeImage[0]]);
   useEffect(() => {
     if (props.comment) {
       let temp = props.currentCafe.cafeImg;
@@ -282,6 +286,7 @@ const ContentHeader = (props) => {
       setCafeImg(temp);
     }
   }, [props.comment?.length]);
+
   const settingsMain = {
     centerMode: true,
     slidesToShow: 1,
@@ -359,7 +364,9 @@ const ContentHeader = (props) => {
           <TagContainer className="tagBox">
             {cafeTag
               ? cafeTag.map((el) => {
-                  return <Tag color="#ffffff" isSmall={true} tagName={el} />;
+                  return (
+                    <Tag key={el} color="#ffffff" isSmall={true} tagName={el} />
+                  );
                 })
               : ''}
           </TagContainer>
@@ -372,12 +379,13 @@ const ContentHeader = (props) => {
             <Slider
               {...settingsMain}
               asNavFor={nav2}
-              ref={(slider) => setSlider1(slider)}
+              ref={(photo) => setMainPhoto(photo)}
             >
               {cafeImg ? (
                 cafeImg.map((el) => {
+                  let uniqueKey = el.split('token')[1] || el;
                   return (
-                    <SlickSlide id="aaaa">
+                    <SlickSlide key={uniqueKey} id="aaaa">
                       <Image src={el} />
                     </SlickSlide>
                   );
@@ -391,12 +399,14 @@ const ContentHeader = (props) => {
             <Slider
               {...settingsThumbs}
               asNavFor={nav1}
-              ref={(slider) => setSlider2(slider)}
+              ref={(photos) => setSubPhotos(photos)}
             >
               {cafeImg ? (
-                cafeImg.map((el) => {
+                cafeImg.map((el, index) => {
+                  let uniqueKey = el.split('token')[1] || el;
+
                   return (
-                    <ThumbSlickSlide>
+                    <ThumbSlickSlide key={uniqueKey}>
                       <ThumbnailImg src={el} />
                     </ThumbSlickSlide>
                   );

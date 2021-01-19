@@ -13,7 +13,7 @@ const BackGroundCover = styled.div`
 `;
 const ImageContainer = styled.div`
   position: fixed;
-
+  opacity: 0.99;
   top: 5%;
   right: 10%;
   width: 80%;

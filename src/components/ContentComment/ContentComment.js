@@ -15,21 +15,22 @@ import SignUp from '../SignUp/SignUp';
 import Like from '../utils/Like/Like';
 import Fade from 'react-reveal/Fade';
 const Detail3 = styled.div`
-  width: 1000px;
+  width: 865px;
   height: auto;
   min-height: 600px;
-  margin: 3rem 0 0 0;
+  margin: 1.5rem 0 0 0;
   max-width: 1200px;
   background: #fafafa;
   padding-top: 48px;
   padding-left: 32px;
   padding-right: 32px;
   padding-bottom: 24px;
-  border-bottom: 1px solid #e9ecef;
+  border: 1px solid #dfdfdf;
+  /* box-shadow: 0.5px 2px 5px 0px #afafaf; */
   z-index: 1;
   @media (max-width: 1400px) {
     margin: 3rem auto auto auto;
-    width: 88%;
+    width: 78%;
   }
 `;
 const BackGroundCover = styled.div`
@@ -221,10 +222,10 @@ const ContentComment = ({
         ) : (
           comment.map((userComment, index) => {
             return (
-              <Fade top collpase>
+              <Fade key={userComment.commentId} top collpase>
                 <Comment
                   handleImageEnlarge={handleImageEnlarge}
-                  key={index}
+                  key={userComment.commentId}
                   userComment={userComment}
                   setCommentModal={setModal}
                   setBeforeModify={setBeforeModify}
