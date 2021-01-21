@@ -53,7 +53,7 @@ const Scope = (props) => {
     }
   }, []);
   // 변하는 scope
-  useMemo(() => {
+  useEffect(() => {
     let tempStar = [];
     for (let i = 0; i <= isHovering; i++) {
       tempStar.push(
@@ -91,7 +91,7 @@ const Scope = (props) => {
   }, [isHovering, scope]);
 
   // 고정된 scope
-  useMemo(() => {
+  useEffect(() => {
     let tempStars = [];
     for (let i = 0; i <= scope; i++) {
       tempStars.push(
